@@ -8,3 +8,39 @@ body {
 body {
 	margin: 0;
 }
+
+.property-grid:has(.property-card:hover) .property-card:not(:hover),
+.property-grid:has(.property-card:focus-visible) .property-card:not(:focus-visible) {
+	background-color: #000;
+	color: #fff;
+}
+
+.property-grid:has(.property-card:hover) .property-card:not(:hover) > div,
+.property-grid:has(.property-card:focus-visible) .property-card:not(:focus-visible) > div {
+	background-color: #000;
+}
+
+.property-grid:has(.property-card:hover) .property-card:not(:hover) .property-card-image,
+.property-grid:has(.property-card:focus-visible) .property-card:not(:focus-visible) .property-card-image {
+	opacity: 0;
+}
+
+.property-card {
+	position: relative;
+	transition:
+		transform 500ms ease,
+		background-color 500ms ease,
+		color 500ms ease;
+}
+
+.property-card:hover,
+.property-card:focus-visible {
+	z-index: 2;
+	transform: scale(1.2);
+}
+/* .font-lora {
+  font-family: var(--font-lora), serif;
+}
+.font-geistMono {
+  font-family:   var(--font-geist-sans), sans-serif;
+} */

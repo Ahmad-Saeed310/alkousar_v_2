@@ -30,13 +30,51 @@ const slides = [
 ];
 
 const navigation = [
-	["Name", "#name"],
+	["Al-Kousar", "#name"],
 	["Projects", "#projects"],
 	["Gallery", "#gallery"],
 	["Insights", "#insights"],
 	["Real estate agency", "#real-estate-agency"],
 	["Contact", "#contact"],
 ];
+
+function renderNavigationItem([label, href]) {
+	return (
+		<a
+			aria-label={label === "Real estate agency" ? label : undefined}
+			className="overflow-hidden text-sm transition-opacity duration-200 hover:opacity-60 sm:text-base"
+			data-nav-item
+			data-agency={label === "Real estate agency" ? "" : undefined}
+			href={href}
+			key={label}
+		>
+			{label === "Al-Kousar" ? (
+				<span className="overflow-hidden">
+					<span className="inline-block left-0" data-name-text>
+						{label}
+					</span>
+				</span>
+			) : label === "Real estate agency" ? (
+				<>
+					<span className="sr-only">{label}</span>
+					<span aria-hidden="true" className="inline-flex">
+						{Array.from(label).map((letter, index) => (
+							<span className="inline-block right-0 overflow-hidden" key={`${letter}-${index}`}>
+								<span className="inline-block" data-agency-letter>
+									{letter === " " ? "\u00a0" : letter}
+								</span>
+							</span>
+						))}
+					</span>
+				</>
+			) : (
+				<span>
+					<span data-other-text>{label}</span>
+				</span>
+			)}
+		</a>
+	);
+}
 
 export default function Loading() {
 	const screenRef = useRef(null);
@@ -110,16 +148,16 @@ export default function Loading() {
 			entrance.to(navItems.filter((_, index) => index !== 0 && index !== 4), {
 				opacity: 1,
 				duration: 0.01,
-			}, 3.7);
+			}, 3.1);
 			entrance.to(otherTexts, {
 				yPercent: 0,
 				opacity: 1,
 				duration: 0.8,
 				ease: "power3.out",
 				stagger: 0.04,
-			}, 3.7);
-			entrance.to(layers[0], { opacity: 1, duration: 1.1, ease: "power1.out" }, 3.7);
-			entrance.to(introCoverRef.current, { opacity: 0, duration: 1.1, ease: "power1.out" }, 3.7);
+			}, 3.2);
+			entrance.to(layers[0], { opacity: 1, duration: 1.1, ease: "power1.out" }, 2.8);
+			entrance.to(introCoverRef.current, { opacity: 0, duration: 1.1, ease: "power1.out" }, 2.9);
 
 			gsap.to(layers, {
 				scale: 2,
@@ -192,12 +230,12 @@ export default function Loading() {
 	}, []);
 
 	return (
-		<div className="w-full bg-neutral-950 text-white">
+		<div className="w-full bg-neutral-950 text-white mix-blend-difference">
 			<section
 				ref={screenRef}
-				className="relative flex min-h-svh w-full items-center justify-center overflow-hidden bg-neutral-950"
+				className="relative  flex min-h-svh w-full justify-center overflow-hidden bg-neutral-950"
 			>
-				<div className="absolute inset-0" aria-hidden="true">
+				<div className="absolute inset-0 " aria-hidden="true">
 					{slides.map((slide, index) => (
 						<div
 							aria-label={slide.alt}
@@ -223,53 +261,17 @@ export default function Loading() {
 
 			<nav
 				aria-label="Main navigation"
-				className="fixed inset-x-0 top-0 z-50 flex flex-wrap items-center justify-center gap-x-8 gap-y-4 px-6 py-5 text-center text-white sm:gap-x-10 lg:gap-x-12"
+				className="  fixed w-full top-0 z-50 flex items-center justify-between gap-x-8 gap-y-4 px-6 py-5 text-center text-white sm:gap-x-10 lg:gap-x-12"
 				ref={navRef}
 			>
-				{navigation.map(([label, href]) => (
-					<a
-						aria-label={label === "Real estate agency" ? label : undefined}
-						className="inline-block overflow-hidden text-sm tracking-wide transition-opacity duration-200 hover:opacity-60 sm:text-base"
-						data-nav-item
-						data-agency={label === "Real estate agency" ? "" : undefined}
-						href={href}
-						key={label}
-					>
-						{label === "Name" ? (
-							<span className="inline-block overflow-hidden">
-								<span className="inline-block" data-name-text>
-									{label}
-								</span>
-							</span>
-						) : label === "Real estate agency" ? (
-							<>
-								<span className="sr-only">{label}</span>
-								<span aria-hidden="true" className="inline-flex">
-									{Array.from(label).map((letter, index) => (
-										<span className="inline-block overflow-hidden" key={`${letter}-${index}`}>
-											<span className="inline-block" data-agency-letter>
-												{letter === " " ? "\u00a0" : letter}
-											</span>
-										</span>
-									))}
-								</span>
-							</>
-						) : (
-							<span className="inline-block overflow-hidden">
-								<span className="inline-block" data-other-text>
-									{label}
-								</span>
-							</span>
-						)}
-					</a>
-				))}
+				{navigation.slice(0, 1).map(renderNavigationItem)}
+				<div className="flex items-center gap-[2vw]">
+					{navigation.slice(1, 4).map(renderNavigationItem)}
+				</div>
+				{navigation.slice(4).map(renderNavigationItem)}
 			</nav>
 
-			<section className="flex min-h-svh w-full items-center justify-center bg-neutral-950 px-6">
-				<h1 className="text-center text-[10vh] font-light leading-none tracking-[-0.06em] sm:text-[10vh]">
-					alkousar
-				</h1>
-			</section>
+			
 		</div>
 	);
 }
