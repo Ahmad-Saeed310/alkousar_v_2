@@ -5,6 +5,7 @@ import Search from './components/Search'
 import TeamSection from './components/TeamSection'
 import PastDeals from './components/PastDeals'
 import DHAblog from './components/DHAblog'
+import CardStack from './components/CardStack'
 export default function MyApp({ Component, pageProps }) {
   return (
     <main >
@@ -12,6 +13,7 @@ export default function MyApp({ Component, pageProps }) {
 	  <Hero/>
       <Search />
 	  <DHAblog />
+      <CardStack />
       <TeamSection />
       <PastDeals />
     </main>

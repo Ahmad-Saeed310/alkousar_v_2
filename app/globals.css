@@ -39,6 +39,110 @@ body {
 	transform: scale(1.2);
 }
 
+.card-stack-section {
+	background: #fafaf9;
+	color: #1c1917;
+	height: 400vh;
+	position: relative;
+}
+
+.card-stack-sticky {
+	height: 100vh;
+	overflow: hidden;
+	position: sticky;
+	top: 0;
+}
+
+.card-stack-heading {
+	left: clamp(1.25rem, 5vw, 5rem);
+	position: absolute;
+	top: 10vh;
+	z-index: 20;
+}
+
+.card-stack-kicker,
+.card-stack-number {
+	color: #78716c;
+	font-family: var(--font-geist-mono), monospace;
+	font-size: 0.72rem;
+	letter-spacing: 0.14em;
+	margin: 0 0 1rem;
+	text-transform: uppercase;
+}
+
+.card-stack-heading h2 {
+	font-family: var(--font-lora), serif;
+	font-size: clamp(2rem, 4vw, 4.5rem);
+	font-weight: 400;
+	line-height: 0.98;
+	margin: 0;
+	max-width: 9ch;
+}
+
+.card-stack-stage {
+	height: min(68vh, 42rem);
+	left: 50%;
+	position: absolute;
+	top: 50%;
+	transform: translate(-50%, -40%);
+	width: min(76vw, 34rem);
+}
+
+.card-stack-card {
+	background: #f5f5f4;
+	border: 1px solid #d6d3d1;
+	box-shadow: 0 1.5rem 4rem rgb(28 25 23 / 12%);
+	color: #1c1917;
+	display: flex;
+	flex-direction: column;
+	height: 100%;
+	justify-content: space-between;
+	left: 0;
+	padding: clamp(1.25rem, 3vw, 2.5rem);
+	position: absolute;
+	top: 0;
+	transform-origin: 50% 100%;
+	transition: transform 120ms linear;
+	width: 100%;
+}
+
+.card-stack-card .card-stack-number {
+	color: #78716c;
+}
+
+.card-stack-card h3 {
+	font-family: var(--font-lora), serif;
+	font-size: clamp(2rem, 5vw, 4.5rem);
+	font-weight: 400;
+	line-height: 1;
+	margin: auto 0 1.5rem;
+	max-width: 8ch;
+}
+
+.card-stack-copy {
+	font-family: var(--font-geist-mono), monospace;
+	font-size: clamp(0.72rem, 1.1vw, 0.85rem);
+	line-height: 1.6;
+	margin: 0;
+	max-width: 31ch;
+}
+
+@media (max-width: 640px) {
+	.card-stack-section {
+		height: 420vh;
+	}
+
+	.card-stack-heading {
+		top: 8vh;
+	}
+
+	.card-stack-stage {
+		height: min(62vh, 34rem);
+		transform: translate(-50%, -30%);
+		width: calc(100vw - 2.5rem);
+	}
+}
+
 .dha-policies-section {
 	background: #fafaf9;
 	color: #1c1917;
